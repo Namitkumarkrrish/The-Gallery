@@ -25,5 +25,5 @@ app.use('/api/memories', memoryRoutes);
 
 app.get('/', (req, res) => res.send("Server is running!"));
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server flying on port ${PORT}`));
