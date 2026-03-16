@@ -1,0 +1,111 @@
+/* GLOBAL RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+ 
+.app-container {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+ 
+.main-content {
+  padding-top: 80px;
+  min-height: 100vh;
+  width: 100%;
+}
+ 
+/* ── Glass Card Utility ── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 24px;
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+}
+ 
+/* ── Green CTA Button ── */
+.btn-green {
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  color: #041611;
+  padding: 13px 32px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+ 
+.btn-green::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+ 
+.btn-green:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 35px rgba(46, 204, 113, 0.45), 0 0 0 1px rgba(46,204,113,0.3);
+}
+ 
+.btn-green:hover::before {
+  opacity: 1;
+}
+ 
+/* ── Rose CTA Button ── */
+.btn-rose {
+  background: linear-gradient(135deg, #e8698a, #c0395d);
+  color: #fff;
+  padding: 13px 32px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+ 
+.btn-rose:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 35px rgba(232, 105, 138, 0.45);
+}
+ 
+/* ── Section Label ── */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--rose-blush, #f4a0b5);
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  font-family: 'Jost', sans-serif;
+}
+ 
+.section-label::before,
+.section-label::after {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 30px;
+  background: linear-gradient(90deg, transparent, var(--rose-soft, #e8698a));
+}
+ 
+.section-label::after {
+  background: linear-gradient(90deg, var(--rose-soft, #e8698a), transparent);
+}

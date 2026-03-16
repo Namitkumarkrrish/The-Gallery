@@ -1,0 +1,203 @@
+.container {
+    padding: 120px 5% 100px;
+    min-height: 100vh;
+    position: relative;
+}
+ 
+/* ─────────────────────────────────────────
+   HEADER
+───────────────────────────────────────── */
+.galleryHeader {
+    text-align: center;
+    margin-bottom: 70px;
+    position: relative;
+}
+ 
+.headerBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(232,105,138,0.25);
+    border-radius: 50px;
+    padding: 7px 18px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #f4a0b5;
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+}
+ 
+.headerBadge span { color: #2ecc71; }
+ 
+.galleryHeader h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    color: #f8f4f0;
+    line-height: 1.1;
+    margin-bottom: 14px;
+}
+ 
+.galleryHeader h1 em {
+    font-style: italic;
+    background: linear-gradient(120deg, #2ecc71 0%, #a8e6cf 45%, #e8698a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+ 
+.galleryHeader p {
+    color: rgba(248,244,240,0.4);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+ 
+/* ─────────────────────────────────────────
+   MASONRY GRID
+───────────────────────────────────────── */
+.masonryLayout {
+    column-width: 340px;
+    column-gap: 20px;
+    width: 100%;
+    margin: 0 auto;
+}
+ 
+.masonryItem {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 20px;
+    break-inside: avoid;
+}
+ 
+/* ─────────────────────────────────────────
+   EMPTY STATE
+───────────────────────────────────────── */
+.emptyState {
+    text-align: center;
+    padding: 80px 20px;
+    color: rgba(248,244,240,0.3);
+}
+ 
+.emptyState p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-style: italic;
+    margin-bottom: 8px;
+    color: rgba(248,244,240,0.4);
+}
+ 
+.emptyState span {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+ 
+/* ─────────────────────────────────────────
+   DELETE CONFIRM OVERLAY
+───────────────────────────────────────── */
+.confirmOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(14px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 20px;
+}
+ 
+.confirmBox {
+    background: rgba(12, 8, 16, 0.95);
+    border: 1px solid rgba(232,105,138,0.25);
+    border-radius: 24px;
+    padding: 40px 36px;
+    max-width: 380px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
+}
+ 
+.confirmBox h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 1.7rem;
+    color: #f8f4f0;
+    margin-bottom: 10px;
+}
+ 
+.confirmBox p {
+    color: rgba(248,244,240,0.45);
+    font-size: 0.85rem;
+    margin-bottom: 28px;
+    line-height: 1.6;
+}
+ 
+.confirmActions {
+    display: flex;
+    gap: 12px;
+}
+ 
+.cancelBtn {
+    flex: 1;
+    padding: 13px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    color: rgba(248,244,240,0.7);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+ 
+.cancelBtn:hover {
+    background: rgba(255,255,255,0.08);
+    color: #f8f4f0;
+}
+ 
+.deleteBtn {
+    flex: 1;
+    padding: 13px;
+    background: linear-gradient(135deg, rgba(192,57,93,0.9), rgba(232,105,138,0.9));
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+ 
+.deleteBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(232,105,138,0.4);
+}
+ 
+/* ─────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────── */
+@media (max-width: 768px) {
+    .container { padding: 100px 16px 80px; }
+ 
+    .masonryLayout {
+        column-width: 100%;
+        column-gap: 0;
+    }
+ 
+    .masonryItem { margin-bottom: 16px; }
+ 
+    .galleryHeader { margin-bottom: 44px; }
+}

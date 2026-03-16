@@ -1,0 +1,513 @@
+.pageWrapper {
+    min-height: calc(100vh - 80px);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    padding: 40px 16px 60px;
+}
+
+/* ─────────────────────────────────────────
+   CARD
+───────────────────────────────────────── */
+.card {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 480px;
+    padding: 44px 36px 40px;
+    border-radius: 28px;
+
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(28px) saturate(160%);
+    -webkit-backdrop-filter: blur(28px) saturate(160%);
+    border: 1px solid rgba(255,255,255,0.07);
+    box-shadow:
+        0 40px 90px rgba(0,0,0,0.5),
+        0 0 0 1px rgba(255,255,255,0.04),
+        inset 0 1px 0 rgba(255,255,255,0.07);
+
+    opacity: 0; /* GSAP animates in */
+}
+
+/* Green→Rose corner glow */
+.card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 29px;
+    background: linear-gradient(
+        135deg,
+        rgba(46,204,113,0.22) 0%,
+        transparent 40%,
+        transparent 60%,
+        rgba(232,105,138,0.18) 100%
+    );
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ─────────────────────────────────────────
+   HEADER
+───────────────────────────────────────── */
+.cardHeader {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.headerBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(232,105,138,0.22);
+    border-radius: 50px;
+    padding: 6px 16px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #f4a0b5;
+    margin-bottom: 14px;
+    backdrop-filter: blur(10px);
+}
+
+.headerBadge span { color: #2ecc71; }
+
+.formHeading {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 2.1rem;
+    color: #f8f4f0;
+    line-height: 1.15;
+    letter-spacing: 0.3px;
+    margin: 0;
+}
+
+.formHeading em {
+    font-style: italic;
+    background: linear-gradient(120deg, #2ecc71 0%, #a8e6cf 45%, #e8698a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ─────────────────────────────────────────
+   DIVIDER
+───────────────────────────────────────── */
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 28px;
+}
+
+.dividerLine {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);
+}
+
+.dividerDot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2ecc71, #e8698a);
+    box-shadow: 0 0 6px rgba(232,105,138,0.5);
+    flex-shrink: 0;
+}
+
+/* ─────────────────────────────────────────
+   INPUTS
+───────────────────────────────────────── */
+.fieldGroup {
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.fieldLabel {
+    display: block;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.63rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(248,244,240,0.35);
+    margin-bottom: 8px;
+    padding-left: 2px;
+}
+
+.inputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.inputIcon {
+    position: absolute;
+    left: 14px;
+    font-size: 0.8rem;
+    color: rgba(248,244,240,0.25);
+    pointer-events: none;
+    transition: color 0.3s ease;
+    line-height: 1;
+}
+
+.titleInput,
+.locationInput {
+    width: 100%;
+    padding: 13px 14px 13px 38px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px;
+    color: #f8f4f0;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+    outline: none;
+    transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.titleInput::placeholder,
+.locationInput::placeholder {
+    color: rgba(248,244,240,0.22);
+    font-weight: 300;
+}
+
+.titleInput:focus,
+.locationInput:focus {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(46,204,113,0.4);
+    box-shadow: 0 0 0 3px rgba(46,204,113,0.08);
+}
+
+.fieldGroup:focus-within .inputIcon {
+    color: rgba(46,204,113,0.65);
+}
+
+/* ─────────────────────────────────────────
+   PHOTO DROPZONE
+───────────────────────────────────────── */
+.dropzoneLabel {
+    display: block;      /* ← makes entire box clickable */
+    width: 100%;
+    cursor: pointer;
+    margin-bottom: 16px;
+}
+
+.dropzoneBox {
+    position: relative;
+    width: 100%;
+    height: 210px;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px dashed rgba(255,255,255,0.12);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: rgba(0,0,0,0.18);
+    transition: border-color 0.35s ease, background 0.35s ease;
+}
+
+.dropzoneBox:hover,
+.dropzoneLabel:hover .dropzoneBox {
+    border-color: rgba(46,204,113,0.45);
+    background: rgba(46,204,113,0.04);
+}
+
+.dropzoneIcon {
+    font-size: 2rem;
+    line-height: 1;
+    display: block;
+    filter: grayscale(0.3);
+}
+
+.uploadText {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: rgba(248,244,240,0.45);
+    text-align: center;
+    line-height: 1.4;
+    padding: 0 16px;
+}
+
+.uploadHint {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.63rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(248,244,240,0.2);
+}
+
+/* ─────────────────────────────────────────
+   PREVIEW STATE
+───────────────────────────────────────── */
+.previewContainer {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    border-radius: 18px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.previewImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Shimmer overlay on preview */
+.previewContainer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        transparent 50%,
+        rgba(212,175,55,0.05) 75%,
+        transparent 100%
+    );
+    pointer-events: none;
+}
+
+.removePhotoBtn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid rgba(232,105,138,0.5);
+    background: rgba(8, 5, 12, 0.82);
+    backdrop-filter: blur(10px);
+    color: #f4a0b5;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.removePhotoBtn:hover {
+    background: rgba(192,57,93,0.8);
+    border-color: rgba(232,105,138,0.9);
+    color: #fff;
+    transform: scale(1.1);
+    box-shadow: 0 0 16px rgba(232,105,138,0.4);
+}
+
+/* ─────────────────────────────────────────
+   TEXTAREA
+───────────────────────────────────────── */
+.textarea {
+    width: 100%;
+    padding: 16px 16px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 14px;
+    color: #f8f4f0;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 300;
+    line-height: 1.7;
+    letter-spacing: 0.2px;
+    margin-bottom: 22px;
+    resize: none;
+    outline: none;
+    transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(46,204,113,0.3) transparent;
+}
+
+.textarea::placeholder {
+    color: rgba(248,244,240,0.22);
+    font-style: italic;
+}
+
+.textarea:focus {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(232,105,138,0.35);
+    box-shadow: 0 0 0 3px rgba(232,105,138,0.07);
+}
+
+/* ─────────────────────────────────────────
+   SUBMIT BUTTON
+───────────────────────────────────────── */
+.submitBtn {
+    width: 100%;
+    padding: 15px 16px;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.77rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #f8f4f0;
+    position: relative;
+    overflow: hidden;
+
+    background: linear-gradient(
+        110deg,
+        #1a5c3a 0%,
+        #2ecc71 35%,
+        #a8e6cf 55%,
+        #e8698a 80%,
+        #c0395d 100%
+    );
+    background-size: 200% 100%;
+    background-position: 0% 50%;
+    transition: background-position 0.55s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.submitBtn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.55s ease;
+}
+
+.submitBtn:hover:not(:disabled) {
+    background-position: 100% 50%;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(46,204,113,0.3), 0 4px 14px rgba(232,105,138,0.2);
+}
+
+.submitBtn:hover:not(:disabled)::before {
+    transform: translateX(100%);
+}
+
+.submitBtn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.submitBtn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* ─────────────────────────────────────────
+   DELETE CONFIRM MODAL
+───────────────────────────────────────── */
+.confirmOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(2,8,5,0.85);
+    backdrop-filter: blur(16px);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.confirmBox {
+    background: rgba(8,14,10,0.97);
+    padding: 40px 32px;
+    border-radius: 24px;
+    text-align: center;
+    border: 1px solid rgba(232,105,138,0.2);
+    width: 100%;
+    max-width: 340px;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
+}
+
+.confirmBox h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 1.7rem;
+    color: #f8f4f0;
+    margin-bottom: 8px;
+}
+
+.confirmBox p {
+    color: rgba(248,244,240,0.4);
+    font-size: 0.85rem;
+    margin-bottom: 28px;
+    line-height: 1.6;
+}
+
+.confirmActions {
+    display: flex;
+    gap: 12px;
+}
+
+.cancelBtn {
+    flex: 1;
+    padding: 13px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 12px;
+    color: rgba(248,244,240,0.7);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.cancelBtn:hover {
+    background: rgba(255,255,255,0.08);
+    color: #f8f4f0;
+}
+
+.confirmDeleteBtn {
+    flex: 1;
+    padding: 13px;
+    background: linear-gradient(135deg, rgba(192,57,93,0.9), rgba(232,105,138,0.9));
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.confirmDeleteBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(232,105,138,0.4);
+}
+
+/* ─────────────────────────────────────────
+   MOBILE
+───────────────────────────────────────── */
+@media (max-width: 600px) {
+    .pageWrapper { padding: 24px 12px 50px; }
+
+    .card {
+        padding: 32px 22px 28px;
+        border-radius: 22px;
+        max-width: 100%;
+    }
+
+    .formHeading { font-size: 1.75rem; }
+
+    .dropzoneBox  { height: 180px; }
+    .previewContainer { height: 210px; }
+
+    .titleInput,
+    .locationInput { font-size: 0.95rem; padding: 14px 14px 14px 40px; }
+
+    .textarea { font-size: 0.9rem; }
+
+    .submitBtn { font-size: 0.75rem; padding: 16px; }
+}

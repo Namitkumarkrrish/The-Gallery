@@ -1,0 +1,338 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Jost', sans-serif;
+ 
+  /* Matching the site's layered background */
+  background:
+    radial-gradient(ellipse at 15% 20%,  rgba(46, 204, 113, 0.13) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 80%,  rgba(232, 105, 138, 0.11) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 50%,  rgba(212, 175, 55, 0.05) 0%, transparent 65%),
+    linear-gradient(160deg, #020e08 0%, #0a2218 35%, #16051a 70%, #0a0a0a 100%);
+}
+ 
+/* Noise texture */
+.container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.5;
+  z-index: 0;
+}
+ 
+/* Aurora glow that drifts */
+.container::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70vw 55vh at 20% 15%, rgba(46,204,113,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 55vw 45vh at 80% 85%, rgba(232,105,138,0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  animation: aurora 14s ease-in-out infinite alternate;
+}
+ 
+@keyframes aurora {
+  0%   { opacity: 0.5; transform: scale(1);    }
+  100% { opacity: 1;   transform: scale(1.08); }
+}
+ 
+/* ─────────────────────────────────────────
+   FLOATING ORBS
+───────────────────────────────────────── */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(60px);
+  animation: orbFloat ease-in-out infinite alternate;
+}
+ 
+.orb1 {
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(46,204,113,0.18), transparent 70%);
+  top: -100px;
+  left: -80px;
+  animation-duration: 12s;
+}
+ 
+.orb2 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(232,105,138,0.15), transparent 70%);
+  bottom: -80px;
+  right: -60px;
+  animation-duration: 16s;
+  animation-delay: -5s;
+}
+ 
+.orb3 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(212,175,55,0.1), transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-duration: 20s;
+  animation-delay: -9s;
+}
+ 
+@keyframes orbFloat {
+  0%   { transform: translate(0, 0) scale(1);     }
+  100% { transform: translate(20px, -25px) scale(1.07); }
+}
+ 
+/* ─────────────────────────────────────────
+   CARD
+───────────────────────────────────────── */
+.loginCard {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 420px;
+  padding: 52px 44px 48px;
+  text-align: center;
+ 
+  /* Glass */
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border-radius: 28px;
+  border: 1px solid rgba(255,255,255,0.07);
+  box-shadow:
+    0 40px 80px rgba(0,0,0,0.5),
+    0 0 0 1px rgba(255,255,255,0.04),
+    inset 0 1px 0 rgba(255,255,255,0.07);
+ 
+  opacity: 0; /* GSAP animates in */
+}
+ 
+/* Inner gradient border glow */
+.loginCard::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 29px;
+  background: linear-gradient(
+    135deg,
+    rgba(46,204,113,0.25) 0%,
+    transparent 40%,
+    transparent 60%,
+    rgba(232,105,138,0.2) 100%
+  );
+  z-index: -1;
+  pointer-events: none;
+}
+ 
+/* ─────────────────────────────────────────
+   HEADER AREA
+───────────────────────────────────────── */
+.iconWrap {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(46,204,113,0.15), rgba(232,105,138,0.15));
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 22px;
+  font-size: 1.5rem;
+  box-shadow: 0 0 24px rgba(46,204,113,0.2), 0 0 40px rgba(232,105,138,0.1);
+}
+ 
+.title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 2.3rem;
+  line-height: 1.15;
+  color: #f8f4f0;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+ 
+.titleAccent {
+  font-style: italic;
+  background: linear-gradient(120deg, #2ecc71 0%, #a8e6cf 45%, #e8698a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+ 
+.subtitle {
+  color: rgba(248,244,240,0.38);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 36px;
+}
+ 
+/* ─────────────────────────────────────────
+   DIVIDER
+───────────────────────────────────────── */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+ 
+.dividerLine {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+}
+ 
+.dividerDot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2ecc71, #e8698a);
+  box-shadow: 0 0 6px rgba(232,105,138,0.5);
+}
+ 
+/* ─────────────────────────────────────────
+   INPUTS
+───────────────────────────────────────── */
+.inputGroup {
+  margin-bottom: 14px;
+  position: relative;
+}
+ 
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+ 
+.inputIcon {
+  position: absolute;
+  left: 16px;
+  color: rgba(248,244,240,0.25);
+  font-size: 0.95rem;
+  pointer-events: none;
+  transition: color 0.3s ease;
+  z-index: 1;
+}
+ 
+.input {
+  width: 100%;
+  padding: 14px 16px 14px 44px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  color: #f8f4f0;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  outline: none;
+  transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+ 
+.input::placeholder {
+  color: rgba(248,244,240,0.25);
+  font-weight: 300;
+}
+ 
+.input:focus {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(46,204,113,0.4);
+  box-shadow: 0 0 0 3px rgba(46,204,113,0.08), 0 4px 16px rgba(0,0,0,0.2);
+}
+ 
+.inputGroup:focus-within .inputIcon {
+  color: rgba(46,204,113,0.7);
+}
+ 
+/* ─────────────────────────────────────────
+   SUBMIT BUTTON
+───────────────────────────────────────── */
+.loginBtn {
+  width: 100%;
+  margin-top: 24px;
+  padding: 15px 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #f8f4f0;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+              box-shadow 0.3s ease;
+ 
+  background: linear-gradient(
+    110deg,
+    #1a5c3a 0%,
+    #2ecc71 35%,
+    #a8e6cf 55%,
+    #e8698a 80%,
+    #c0395d 100%
+  );
+  background-size: 200% 100%;
+  background-position: 0% 50%;
+}
+ 
+/* Shimmer sweep */
+.loginBtn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.18) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.55s ease;
+}
+ 
+.loginBtn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 12px 30px rgba(46,204,113,0.3),
+    0 6px 16px rgba(232,105,138,0.2);
+  background-position: 100% 50%;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+              box-shadow 0.3s ease,
+              background-position 0.6s ease;
+}
+ 
+.loginBtn:hover::before {
+  transform: translateX(100%);
+}
+ 
+.loginBtn:active {
+  transform: translateY(0px) scale(0.99);
+}
+ 
+/* ─────────────────────────────────────────
+   FOOTER NOTE
+───────────────────────────────────────── */
+.cardFooter {
+  margin-top: 28px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.05rem;
+  background: linear-gradient(90deg, #2ecc71, #e8698a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0.7;
+}
+ 

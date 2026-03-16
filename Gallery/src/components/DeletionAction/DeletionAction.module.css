@@ -1,0 +1,80 @@
+.btnWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ─────────────────────────────────────────
+   BUTTON
+───────────────────────────────────────── */
+.cardDeleteBtn {
+    position: relative;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid rgba(232,105,138,0.4);
+    background: rgba(10, 5, 14, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    color: rgba(244, 160, 181, 0.9);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+
+    box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+.cardDeleteBtn:hover {
+    background: rgba(192,57,93,0.85);
+    border-color: rgba(232,105,138,0.8);
+    transform: scale(1.12);
+    box-shadow: 0 0 18px rgba(232,105,138,0.5);
+    color: #fff;
+}
+
+.cardDeleteBtn:active {
+    transform: scale(0.95);
+}
+
+.icon {
+    font-size: 11px;
+    font-weight: 700;
+    pointer-events: none;
+    line-height: 1;
+}
+
+/* ─────────────────────────────────────────
+   GLOW RING
+───────────────────────────────────────── */
+.pulseGlow {
+    position: absolute;
+    width: 140%;
+    height: 140%;
+    background: radial-gradient(circle, rgba(232,105,138,0.35) 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0.2;
+    filter: blur(6px);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ─────────────────────────────────────────
+   MOBILE — bigger tap target
+───────────────────────────────────────── */
+@media (max-width: 768px) {
+    .cardDeleteBtn {
+        width: 40px;
+        height: 40px;
+        border-color: rgba(232,105,138,0.6);
+        background: rgba(10,5,14,0.85);
+    }
+
+    .icon { font-size: 13px; }
+}

@@ -1,0 +1,351 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8%;
+  height: 80px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+ 
+  /* Glass layer */
+  background: rgba(5, 14, 10, 0.55);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+ 
+  /* Subtle border with gradient */
+  border-bottom: 1px solid transparent;
+  border-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(46, 204, 113, 0.2) 30%,
+    rgba(232, 105, 138, 0.2) 70%,
+    transparent 100%
+  ) 1;
+ 
+  /* Soft glow below the bar */
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.04),
+    0 8px 32px rgba(0,0,0,0.35);
+}
+ 
+/* ─────────────────────────────────────────
+   LOGO
+───────────────────────────────────────── */
+.logo {
+  position: relative;
+}
+ 
+.logoLink {
+  text-decoration: none;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.55rem;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+ 
+  background: linear-gradient(120deg, #2ecc71 0%, #a8e6cf 45%, #e8698a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+ 
+  transition: filter 0.3s ease;
+}
+ 
+.logoLink:hover {
+  filter: brightness(1.2);
+}
+ 
+/* Animated dot beside the logo */
+.logoDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2ecc71, #e8698a);
+  box-shadow: 0 0 8px rgba(46, 204, 113, 0.7);
+  flex-shrink: 0;
+  animation: dotPulse 3s ease-in-out infinite;
+}
+ 
+@keyframes dotPulse {
+  0%, 100% { box-shadow: 0 0 6px rgba(46,204,113,0.7);  transform: scale(1); }
+  50%       { box-shadow: 0 0 14px rgba(232,105,138,0.8); transform: scale(1.3); }
+}
+ 
+/* ─────────────────────────────────────────
+   LINKS
+───────────────────────────────────────── */
+.links {
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
+}
+ 
+.navLink {
+  text-decoration: none;
+  color: rgba(248, 244, 240, 0.42);
+  font-family: 'Jost', sans-serif;
+  font-size: 0.76rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  position: relative;
+  padding: 6px 0;
+  transition: color 0.3s ease;
+}
+ 
+/* Underline that grows from center */
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, #2ecc71, #e8698a);
+  border-radius: 2px;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+ 
+.navLink:hover {
+  color: rgba(248, 244, 240, 0.85);
+}
+ 
+.navLink:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+ 
+/* ── Active state ── */
+.navLink.active {
+  color: #f8f4f0;
+}
+ 
+.navLink.active::after {
+  transform: translateX(-50%) scaleX(1);
+  background: linear-gradient(90deg, #2ecc71, #a8e6cf, #e8698a);
+  box-shadow: 0 0 8px rgba(46, 204, 113, 0.4);
+  height: 1.5px;
+}
+ 
+/* ── Active dot above the link ── */
+.navLink.active::before {
+  content: '✦';
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.45rem;
+  background: linear-gradient(135deg, #2ecc71, #e8698a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0;
+  opacity: 0.9;
+}
+ 
+/* ─────────────────────────────────────────
+   DIVIDER between links and logout
+───────────────────────────────────────── */
+.divider {
+  width: 1px;
+  height: 20px;
+  background: linear-gradient(180deg, transparent, rgba(255,255,255,0.15), transparent);
+  margin: 0 0.4rem;
+}
+ 
+/* ─────────────────────────────────────────
+   LOGOUT WRAPPER
+───────────────────────────────────────── */
+.logoutWrapper {
+  display: flex;
+  align-items: center;
+  margin-left: 0.5rem;
+}
+
+/* Style for the button inside the wrapper */
+.logoutWrapper button {
+  background: rgba(232, 105, 138, 0.05);
+  color: rgba(248, 244, 240, 0.7);
+  border: 1px solid rgba(232, 105, 138, 0.3);
+  padding: 8px 18px;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 50px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(4px);
+}
+
+.logoutWrapper button:hover {
+  color: #f8f4f0;
+  background: rgba(232, 105, 138, 0.15);
+  border-color: rgba(232, 105, 138, 0.6);
+  box-shadow: 0 0 20px rgba(232, 105, 138, 0.2);
+  transform: translateY(-1px);
+}
+
+/* Subtle shine effect on hover */
+.logoutWrapper button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.logoutWrapper button:hover::before {
+  left: 100%;
+}
+
+.logoutWrapper button:active {
+  transform: translateY(1px);
+  filter: brightness(0.9);
+}
+
+@media (max-width: 768px) {
+  .logoutWrapper button {
+    padding: 6px 14px;
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+  }
+}
+ 
+/* ─────────────────────────────────────────
+   MOBILE
+───────────────────────────────────────── */
+@media (max-width: 768px) {
+  .nav {
+    padding: 0 5%;
+    height: 68px;
+  }
+ 
+  .links {
+    gap: 1.4rem;
+  }
+ 
+  .logoLink {
+    font-size: 1.3rem;
+  }
+ 
+  .navLink {
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+  }
+}
+ 
+@media (max-width: 480px) {
+  .links {
+    gap: 1rem;
+  }
+ 
+  .divider {
+    display: none;
+  }
+}
+
+/* ─────────────────────────────────────────
+   HAMBURGER
+───────────────────────────────────────── */
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.hamburger span {
+  width: 22px;
+  height: 2px;
+  background: #f8f4f0;
+  border-radius: 2px;
+  transition: all 0.35s ease;
+}
+
+/* animation to X */
+
+.hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+
+/* ─────────────────────────────────────────
+   MOBILE MENU
+───────────────────────────────────────── */
+
+@media (max-width: 870px) {
+
+  .hamburger {
+    display: flex;
+  }
+
+  .links {
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+
+    flex-direction: column;
+    align-items: center;
+
+    gap: 1.6rem;
+
+    background: rgba(5, 14, 10, 0.92);
+    backdrop-filter: blur(20px);
+
+    padding: 30px 0;
+
+    transform: translateY(-120%);
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .mobileOpen {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .navLink {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+  }
+
+  .divider {
+    display: none;
+  }
+
+}

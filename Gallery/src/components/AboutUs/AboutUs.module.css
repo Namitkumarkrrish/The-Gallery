@@ -1,0 +1,398 @@
+.aboutSection {
+    padding: 120px 10%;
+    background: #050505;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    align-items: center;.aboutSection {
+    padding: 140px 8%;
+    overflow: hidden;
+    position: relative;
+}
+ 
+/* Soft background panel behind the whole section */
+.aboutSection::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 60% 50% at 0% 50%,   rgba(46,204,113,0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 50% at 100% 50%, rgba(232,105,138,0.06) 0%, transparent 70%);
+    pointer-events: none;
+}
+ 
+.container {
+    display: flex;
+    align-items: center;
+    gap: 90px;
+    max-width: 1180px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+ 
+/* ─────────────────────────────────────────
+   IMAGE SIDE
+───────────────────────────────────────── */
+.imageWrapper {
+    flex: 1;
+    position: relative;
+}
+ 
+.mainImage {
+    width: 100%;
+    height: 560px;
+    object-fit: cover;
+    border-radius: 24px;
+    position: relative;
+    z-index: 2;
+    box-shadow:
+        0 40px 80px rgba(0,0,0,0.55),
+        0 0 0 1px rgba(255,255,255,0.05);
+    display: block;
+}
+ 
+/* Green offset border */
+.imageDecor {
+    position: absolute;
+    top: -18px;
+    left: -18px;
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    border: 1.5px solid rgba(46,204,113,0.45);
+    z-index: 1;
+    transition: transform 0.5s ease;
+}
+ 
+.imageWrapper:hover .imageDecor {
+    transform: translate(-4px, -4px);
+}
+ 
+/* Rose offset border */
+.imageDecor2 {
+    position: absolute;
+    bottom: -18px;
+    right: -18px;
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    border: 1.5px solid rgba(232,105,138,0.35);
+    z-index: 1;
+    transition: transform 0.5s ease;
+}
+ 
+.imageWrapper:hover .imageDecor2 {
+    transform: translate(4px, 4px);
+}
+ 
+/* Corner accent dot — top left */
+.imageCorner {
+    position: absolute;
+    top: -24px;
+    left: -24px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2ecc71, #a8e6cf);
+    z-index: 4;
+    box-shadow: 0 0 14px rgba(46,204,113,0.8);
+}
+ 
+/* Gold shimmer over the image */
+.imageShimmer {
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    background: linear-gradient(
+        135deg,
+        transparent 40%,
+        rgba(212,175,55,0.07) 60%,
+        transparent 80%
+    );
+    z-index: 3;
+    pointer-events: none;
+}
+ 
+/* ─────────────────────────────────────────
+   CONTENT SIDE
+───────────────────────────────────────── */
+.contentWrapper {
+    flex: 1.25;
+}
+ 
+.subtitle {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #f4a0b5;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+ 
+.subtitle::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #e8698a);
+}
+ 
+.subtitle::after {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: linear-gradient(90deg, #e8698a, transparent);
+}
+ 
+.title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(2.8rem, 4vw, 4.2rem);
+    line-height: 1.1;
+    color: #f8f4f0;
+    margin-bottom: 10px;
+}
+ 
+.titleAccent {
+    font-style: italic;
+    background: linear-gradient(120deg, #2ecc71 0%, #a8e6cf 45%, #e8698a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+}
+ 
+/* Divider with gradient */
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 28px 0;
+}
+ 
+.dividerLine {
+    height: 1px;
+    width: 50px;
+    background: linear-gradient(90deg, #2ecc71, #e8698a);
+}
+ 
+.dividerDot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2ecc71, #e8698a);
+    box-shadow: 0 0 8px rgba(232,105,138,0.5);
+}
+ 
+.description {
+    color: rgba(248, 244, 240, 0.65);
+    line-height: 1.9;
+    font-size: 1.05rem;
+    font-weight: 300;
+    margin-bottom: 22px;
+}
+ 
+.description strong {
+    color: rgba(248, 244, 240, 0.9);
+    font-weight: 500;
+}
+ 
+/* ─────────────────────────────────────────
+   STATS CARDS
+───────────────────────────────────────── */
+.stats {
+    display: flex;
+    gap: 20px;
+    margin-top: 44px;
+}
+ 
+.statItem {
+    flex: 1;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 22px 20px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+ 
+.statItem::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+        rgba(46,204,113,0.07) 0%,
+        transparent 50%,
+        rgba(232,105,138,0.05) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+ 
+.statItem:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(46,204,113,0.2);
+}
+ 
+.statItem:hover::before {
+    opacity: 1;
+}
+ 
+.statNumber {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, #2ecc71, #e8698a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+    line-height: 1;
+    margin-bottom: 6px;
+}
+ 
+.statLabel {
+    color: rgba(248, 244, 240, 0.5);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 500;
+}
+ 
+/* ─────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────── */
+@media (max-width: 968px) {
+    .container {
+        flex-direction: column;
+        gap: 60px;
+    }
+ 
+    .mainImage { height: 420px; }
+ 
+    .contentWrapper { text-align: center; }
+ 
+    .subtitle {
+        justify-content: center;
+    }
+ 
+    .divider { justify-content: center; }
+ 
+    .stats { justify-content: center; }
+}
+ 
+@media (max-width: 480px) {
+    .aboutSection { padding: 100px 5%; }
+    .stats { flex-direction: column; align-items: center; }
+    .statItem { width: 160px; }
+}
+ 
+    gap: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.imageWrapper {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+}
+
+.mainImage {
+    width: 100%;
+    height: 550px;
+    object-fit: cover;
+    border-radius: 20px;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+}
+
+.imageDecor {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #2ecc71; /* Matching your theme green */
+    border-radius: 20px;
+    z-index: 1;
+}
+
+.contentWrapper {
+    flex: 1.2;
+}
+
+.subtitle {
+    color: #2ecc71;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.title {
+    font-size: 3.5rem;
+    color: #fff;
+    font-family: 'Dancing Script', cursive; /* Matching your header style */
+    margin-bottom: 25px;
+}
+
+.divider {
+    width: 60px;
+    height: 4px;
+    background: #2ecc71;
+    margin-bottom: 30px;
+}
+
+.description {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.8;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.statItem h4 {
+    color: #fff;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+.statItem p {
+    color: #2ecc71;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 968px) {
+    .container {
+        flex-direction: column;
+        gap: 50px;
+        text-align: center;
+    }
+    .mainImage { height: 400px; }
+    .divider { margin: 0 auto 30px; }
+    .stats { justify-content: center; }
+}
