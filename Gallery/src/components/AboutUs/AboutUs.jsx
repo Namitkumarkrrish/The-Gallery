@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useRef } from "react";
 import { initAboutAnimations } from "./aboutUsAnimation";
 import styles from "./AboutUs.module.css";
-import usPhoto from "../../assets/ourPhoto.jpeg";
+import usPhoto from "../../assets/photo.jpeg";
 
 const AboutUs = () => {
   const sectionRef = useRef(null);
