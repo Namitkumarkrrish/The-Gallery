@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { journeyData } from './journeyData';
+import { journeyData } from './JourneyData';
 import { initJourneyAnimations } from './ourJourneyAnimation';
 import styles from './OurJourney.module.css';
 
